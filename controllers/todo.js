@@ -1,3 +1,7 @@
+// Student ID: 301216721
+// Name: Kin Man Tung
+// Date: 28/10/2022
+
 // create a reference to the model
 let TodoModel = require('../models/todo');
 
@@ -104,6 +108,20 @@ module.exports.processEditPage = (req, res, next) => {
 module.exports.performDelete = (req, res, next) => {
 
     // ADD YOUR CODE HERE
+    let id = req.params.id;
+
+    TodoModel.remove({_id: id}, (err) => {
+        if(err)
+        {
+            console.log(err);
+            res.end(err);
+        }
+        else
+        {
+            // refresh the book list
+            res.redirect('/todo/list');
+        }
+    });
 
 }
 
